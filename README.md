@@ -158,3 +158,8 @@ python manage.py runserver
 삭제
 ![alt text](image-6.png)
 ![alt text](image-7.png)
+
+
+페이지네이션
+![alt text](image-8.png)
+![alt text](image-9.png)
