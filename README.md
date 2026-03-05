@@ -143,3 +143,18 @@ python manage.py runserver
 
 ```
 ![alt text](image.png)
+
+생성
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+상세보기
+![alt text](image-3.png)
+
+수정
+![alt text](image-4.png)
+![alt text](image-5.png)
+
+삭제
+![alt text](image-6.png)
+![alt text](image-7.png)

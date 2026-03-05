@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <h2>Create a New Todo</h2>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea name="description" id="description"></textarea>
+    </div>
+    <div>
+      <label for="complete">Complete:</label>
+      <input type="checkbox" name="complete" id="complete">
+    </div>
+    <div>
+      <label for="exp">Experience Points:</label>
+      <input type="number" name="exp" id="exp" min="0">
+    </div>
+    <button type="submit" id="todoCreate">Create</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+const api = axios.create({
+  baseURL: "/",
+  headers: { "Content-Type": "application/json" }
+});
+
+api.interceptors.request.use(config => {
+  const csrfToken = document.cookie
+    .split("; ")
+    .find(row => row.startsWith("csrftoken"))
+    ?.split("=")[1];
+  if (csrfToken) config.headers["X-CSRFToken"] = csrfToken;
+  return config;
+});
+
+document.getElementById("todoCreate").addEventListener("click", async () => {
+  try {
+    const res = await api.post("todo/api/create/", {
+      name: document.getElementById("name").value,
+      description: document.getElementById("description").value,
+      complete: document.getElementById("complete").checked,
+      exp: Number(document.getElementById("exp").value || 0)
+    });
+    console.log(res.data);
+    window.location.href = "/todo/list/";
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+  }
+});
+</script>
+{% endblock %}
