@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from ..models import Todo  # 경로변경
-from ..serializers import TodoSerializer  # 경로변경
+from rest_framework import status, viewsets
+from ..models import Todo
+from ..serializers import TodoSerializer
 
 
 # 전체보기
@@ -163,3 +163,8 @@ class TodoDeleteAPI(APIView):
 
         return Response(status=status.HTTP_204_NO_CONTENT)
         # 삭제 성공 시 응답 반환 (204 = 성공했지만 반환할 데이터 없음)
+
+
+class TodoViewSet(viewsets.ModelViewSet):
+    queryset = Todo.objects.all().order_by("-created_at")
+    serializer_class = TodoSerializer
