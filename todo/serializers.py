@@ -10,6 +10,7 @@ class TodoSerializer(ModelSerializer):
         read_only_fields = ["created_at", "updated_at"]  # 읽기만 가능
 
         fields = [
+            "id",
             "name",
             "description",
             "complete",
