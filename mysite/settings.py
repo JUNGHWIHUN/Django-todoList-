@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "todo",
     "rest_framework",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,22 @@ STATICFILES_DIRS = [
 
 
 REST_FRAMEWORK = {
+    # 인증 방식 설정
+    # API 요청을 보낸 사용자가 누구인지 확인하는 방법
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        # 세션 인증 (Django 로그인 기반)
+        # 브라우저에서 로그인 상태라면 자동 인증됨
+        "rest_framework.authentication.SessionAuthentication",
+        # Basic 인증 (아이디/비밀번호를 헤더로 보내는 방식)
+        # 주로 테스트용으로 사용됨 (Postman, curl 등)
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+    # 기본 권한 설정
+    # 인증된 사용자만 API 접근 가능
+    "DEFAULT_PERMISSION_CLASSES": [
+        # 로그인한 사용자만 API 사용 가능
+        "rest_framework.permissions.IsAuthenticated",
+    ],
     # 기본 페이지네이션 설정
     "DEFAULT_PAGINATION_CLASS": "todo.pagination.CustomPageNumberPagination",
     "PAGE_SIZE": 3,
@@ -143,3 +160,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # SECURITY를 .env로 이동하여 보호
 SECRET_KEY = env("DJANGO_SECRET_KEY")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

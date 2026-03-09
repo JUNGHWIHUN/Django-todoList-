@@ -169,3 +169,7 @@ python manage.py runserver
 ![alt text](image-10.png)
 이미지 수정
 ![alt text](image-11.png)
+
+
+로그인 세션 생성
+![alt text](image-12.png)
