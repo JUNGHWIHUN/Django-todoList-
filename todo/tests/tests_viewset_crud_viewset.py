@@ -1,6 +1,6 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
-
+from django.contrib.auth.models import User
 from ..models import Todo
 
 
@@ -9,11 +9,15 @@ class TodoViewSetCRUDTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.base_url = "/todo/viewsets/view/"
+        # 유저 생성 + 로그인
+        self.user = User.objects.create_user(username="testuser", password="test1234")
+        self.client.force_login(self.user)
         self.todo = Todo.objects.create(
             name="운동",
             description="스쿼트 50회",
             complete=False,
             exp=10,
+            user=self.user,
         )
 
     def test_list(self):
