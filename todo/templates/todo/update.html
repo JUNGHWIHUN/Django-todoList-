@@ -24,6 +24,20 @@
     <label for="exp">Experience Points:</label>
     <input type="number" name="exp" id="exp" min="0" value="{{ todo.exp }}">
   </div>
+  <div>
+    <label>Current Image:</label><br>
+    {% if todo.image %}
+      <img src="{{ todo.image.url }}" alt="todo image" style="max-width:250px; height:auto;">
+    {% else %}
+      <p>-</p>
+    {% endif %}
+  </div>
+
+  <!-- [추가] 새 이미지 업로드 -->
+  <div>
+    <label for="image">New Image:</label>
+    <input type="file" id="image">
+  </div>
 
   <button type="button" id="todoUpdate">저장</button>
   <button type="button" onclick="history.back()">취소</button>
@@ -68,6 +82,9 @@ document.getElementById("todoUpdate").addEventListener("click", async () => {
     const formData = new FormData();
     // FormData 객체 생성 (폼 데이터를 서버로 전송하기 위한 객체)
 
+    // 이미지 input 요소 가져오기
+    const fileInput = document.getElementById("image");
+
     formData.append("name", document.getElementById("name").value);
     // name 입력값을 FormData에 추가
 
@@ -80,9 +97,16 @@ document.getElementById("todoUpdate").addEventListener("click", async () => {
     formData.append("exp", document.getElementById("exp").value || 0);
     // exp 입력값 추가 (값이 없으면 0으로 설정)
 
+          // 새 이미지를 선택했을 경우에만 image 필드를 추가
+        // (이미지를 변경하지 않으면 서버로 보내지 않음)
+        if (fileInput.files.length > 0) {
+          formData.append("image", fileInput.files[0]);
+        }
+
     const res = await api.patch(`/todo/viewsets/view/${todoId}/`, formData);
     // PATCH 요청으로 Todo 데이터 수정 API 호출
     // formData를 서버로 전송하여 일부 필드만 수정
+
 
     console.log(res.data);
     // 서버에서 반환된 수정된 데이터 콘솔 출력

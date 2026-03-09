@@ -18,4 +18,5 @@ class TodoSerializer(ModelSerializer):
             "completed_at",
             "created_at",
             "updated_at",
+            "image",
         ]

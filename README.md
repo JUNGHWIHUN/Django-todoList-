@@ -163,3 +163,9 @@ python manage.py runserver
 페이지네이션
 ![alt text](image-8.png)
 ![alt text](image-9.png)
+
+
+이미지
+![alt text](image-10.png)
+이미지 수정
+![alt text](image-11.png)
