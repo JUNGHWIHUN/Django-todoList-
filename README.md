@@ -173,3 +173,7 @@ python manage.py runserver
 
 로그인 세션 생성
 ![alt text](image-12.png)
+
+
+인터렉티브
+![alt text](image-13.png)
