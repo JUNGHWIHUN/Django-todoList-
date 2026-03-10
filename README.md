@@ -177,3 +177,6 @@ python manage.py runserver
 
 인터렉티브
 ![alt text](image-13.png)
+
+css 및 리팩토링
+![alt text](image-14.png)
