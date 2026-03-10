@@ -1,0 +1,148 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Q0HTwYTWHhcq8zdc2AaAn0$3ARyHMORI63Pnr+kVEedthgF/7nXI8a9G3Ufjb0eZi4=",
+    "last_login": "2026-03-09T05:14:38.445Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-03-05T01:14:03.637Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$jdsMcerzdvn5vugCC80Sgh$iSpm+Y/3jfIrXIEcmjkmcQ8YzgaxxYNs/C2XfuJpw6s=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-09T09:12:15.874Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$b5YVoX4v6rgy41jCUj0Ixu$/zuLIG0CvSDYfnIxO7X4LC3EeerDG0pZ1Ka6oHzhlXY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-10T01:22:31.898Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "todo.todo",
+  "pk": 13,
+  "fields": {
+    "name": "강아지",
+    "description": "ㅇㅇ",
+    "complete": false,
+    "exp": 11,
+    "completed_at": null,
+    "created_at": "2026-03-10T02:28:24.145Z",
+    "updated_at": "2026-03-10T04:17:24.247Z",
+    "image": "todo_images/dog_OXHzdBa.png",
+    "user": null
+  }
+},
+{
+  "model": "interaction.todolike",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "user2"
+    ],
+    "todo": 13,
+    "created_at": "2026-03-10T02:28:31.752Z"
+  }
+},
+{
+  "model": "interaction.todolike",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "user1"
+    ],
+    "todo": 13,
+    "created_at": "2026-03-10T02:30:37.210Z"
+  }
+},
+{
+  "model": "interaction.todobookmark",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "user2"
+    ],
+    "todo": 13,
+    "created_at": "2026-03-10T02:28:32.478Z"
+  }
+},
+{
+  "model": "interaction.todobookmark",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "user1"
+    ],
+    "todo": 13,
+    "created_at": "2026-03-10T02:30:38.059Z"
+  }
+},
+{
+  "model": "interaction.todocomment",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "user2"
+    ],
+    "todo": 13,
+    "content": "귀엽다",
+    "created_at": "2026-03-10T02:28:40.205Z"
+  }
+},
+{
+  "model": "interaction.todocomment",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "user2"
+    ],
+    "todo": 13,
+    "content": "귀엽다",
+    "created_at": "2026-03-10T02:29:59.928Z"
+  }
+},
+{
+  "model": "interaction.todocomment",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "user1"
+    ],
+    "todo": 13,
+    "content": "귀엽다",
+    "created_at": "2026-03-10T02:30:43.105Z"
+  }
+}
+]
