@@ -1,0 +1,79 @@
+<div class="header">
+  <h1>
+    <a href="{% url 'todo:list' %}" style="text-decoration:none; color:inherit;">
+      Todo 서비스
+    </a>
+  </h1>
+
+  <div>
+
+    <!--
+    {% if request.user.is_authenticated %}
+        <span>{{ request.user.username }}님 환영합니다</span>
+        <button id="logoutBtn">로그아웃</button>
+    {% else %}
+        <a href="/login/">로그인</a>
+        <a href="/signup-page/">회원가입</a>
+    {% endif %}
+    -->
+
+    <span id="authWelcome" style="display:none;"></span>
+
+
+    <button id="logoutBtn" style="display:none;">로그아웃</button>
+
+
+
+    <a id="loginLink" href="/login/" style="display:none;">로그인</a>
+    <a id="signupLink" href="/signup-page/" style="display:none;">회원가입</a>
+  </div>
+</div>
+
+<hr>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+
+  const ACCESS_KEY = "access_token";
+  const REFRESH_KEY = "refresh_token";
+
+
+  const access = localStorage.getItem(ACCESS_KEY);
+
+
+  const welcomeEl = document.getElementById("authWelcome");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const loginLink = document.getElementById("loginLink");
+  const signupLink = document.getElementById("signupLink");
+
+
+  if (access) {
+
+    welcomeEl.textContent = "로그인됨";
+    welcomeEl.style.display = "inline-block";
+    logoutBtn.style.display = "inline-block";
+
+    loginLink.style.display = "none";
+    signupLink.style.display = "none";
+
+
+    logoutBtn.addEventListener("click", () => {
+
+      localStorage.removeItem(ACCESS_KEY);
+      localStorage.removeItem(REFRESH_KEY);
+
+
+      window.location.href = "/login/";
+    });
+
+  } else {
+
+    welcomeEl.style.display = "none";
+    logoutBtn.style.display = "none";
+
+    loginLink.style.display = "inline-block";
+    signupLink.style.display = "inline-block";
+  }
+});
+</script>
