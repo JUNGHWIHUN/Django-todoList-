@@ -30,7 +30,7 @@ class TodoAPITests(TestCase):
     def test_list(self):
         res = self.client.get("/todo/viewsets/view/")
         self.assertEqual(res.status_code, 200)
-        self.assertIsInstance(res.json()["results"], list)
+        self.assertIsInstance(res.json()["data"], list)
 
     def test_create(self):
         payload = {

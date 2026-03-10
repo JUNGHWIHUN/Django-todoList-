@@ -32,8 +32,8 @@ class TodoViewSetCRUDTests(TestCase):
         res = self.client.get(self.base_url)
         self.assertEqual(res.status_code, 200)
         data = res.json()
-        self.assertIsInstance(data["results"], list)
-        self.assertGreaterEqual(len(data["results"]), 1)
+        self.assertIsInstance(data["data"], list)
+        self.assertGreaterEqual(len(data["data"]), 1)
 
     def test_create(self):
         payload = {
