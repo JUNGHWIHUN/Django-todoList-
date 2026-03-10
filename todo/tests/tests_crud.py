@@ -1,6 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
 from django.contrib.auth.models import User
+from rest_framework_simplejwt.tokens import RefreshToken
 from ..models import Todo
 
 
@@ -8,9 +9,15 @@ class TodoAPITests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        # 유저 생성 + 로그인
+
+        # 유저 생성
         self.user = User.objects.create_user(username="testuser", password="test1234")
-        self.client.force_login(self.user)
+
+        # JWT 토큰 발급 + 인증 헤더 설정
+        refresh = RefreshToken.for_user(self.user)
+        self.client.credentials(
+            HTTP_AUTHORIZATION=f"Bearer {str(refresh.access_token)}"
+        )
 
         self.todo = Todo.objects.create(
             name="운동",
