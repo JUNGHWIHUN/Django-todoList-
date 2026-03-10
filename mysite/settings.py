@@ -74,6 +74,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "mysite.wsgi.application"
+# 보안 향상, 코드 재사용, 환경 구분 가능
+env = environ.Env(DEBUG=(bool, False))
+
+# 환경변수
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Database
@@ -82,11 +87,11 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mysite_db",
-        "USER": "mysite_user",
-        "PASSWORD": "mysite_password",
-        "HOST": "localhost",
-        "PORT": "5433",
+        "NAME": env("DB_NAME", default="mysite_db"),
+        "USER": env("DB_USER", default="mysite_user"),
+        "PASSWORD": env("DB_PASSWORD", default="mysite_password"),
+        "HOST": env("DB_HOST", default="localhost"),
+        "PORT": env("DB_PORT", default="5433"),
     }
 }
 
@@ -150,11 +155,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-# 보안 향상, 코드 재사용, 환경 구분 가능
-env = environ.Env(DEBUG=(bool, False))
-
-# 환경변수
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # SECURITY를 .env로 이동하여 보호
 SECRET_KEY = env("DJANGO_SECRET_KEY")
