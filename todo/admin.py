@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Todo
+from .models import CollectedReview
 
 
 # @admin.register(Todo) + 클래스 방식
@@ -10,3 +11,9 @@ class TodoAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+
+
+@admin.register(CollectedReview)
+class CollectedReviewAdmin(admin.ModelAdmin):
+    list_display = ("id", "title")
+    search_fields = ("title", "review")

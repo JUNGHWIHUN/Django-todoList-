@@ -38,3 +38,16 @@ class Todo(models.Model):
 
         # 부모 모델(Model)의 원래 save() 실행 (DB에 실제 저장)
         super().save(*args, **kwargs)
+
+
+class CollectedReview(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=255)
+    review = models.TextField()
+
+    class Meta:
+        db_table = "stg_movie_reviews"
+        managed = False
+
+    def __str__(self):
+        return self.title
